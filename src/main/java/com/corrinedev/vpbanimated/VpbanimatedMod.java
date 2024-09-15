@@ -26,9 +26,6 @@ import java.util.Collection;
 import java.util.ArrayList;
 import java.util.AbstractMap;
 
-import com.corrinedev.vpbanimated.init.VpbanimatedModTabs;
-import com.corrinedev.vpbanimated.init.VpbanimatedModItems;
-
 @Mod("vpbanimated")
 public class VpbanimatedMod {
 	public static final Logger LOGGER = LogManager.getLogger(VpbanimatedMod.class);
@@ -39,10 +36,6 @@ public class VpbanimatedMod {
 		// End of user code block mod constructor
 		MinecraftForge.EVENT_BUS.register(this);
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-
-		VpbanimatedModItems.REGISTRY.register(bus);
-
-		VpbanimatedModTabs.REGISTRY.register(bus);
 
 		// Start of user code block mod init
 		// End of user code block mod init
