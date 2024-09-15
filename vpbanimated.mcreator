@@ -1,11 +1,31 @@
 {
-  "mod_elements": [],
+  "mod_elements": [
+    {
+      "name": "Cleaver",
+      "type": "tool",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cleaver",
+      "metadata": {
+        "files": [
+          "src/main/java/com/corrinedev/vpbanimated/item/CleaverItem.java",
+          "src/main/resources/assets/vpbanimated/models/item/cleaver.json"
+        ]
+      }
+    }
+  ],
   "variable_elements": [],
   "sound_elements": [],
-  "tag_elements": {},
+  "tag_elements": {
+    "ITEMS:minecraft:swords": [
+      "~CUSTOM:Cleaver"
+    ]
+  },
   "tab_element_order": {},
   "language_map": {
-    "en_us": {}
+    "en_us": {
+      "item.vpbanimated.cleaver": "Cleaver"
+    }
   },
   "foldersRoot": {
     "name": "~",
