@@ -21,6 +21,12 @@ authors="corri, MCreator"
     side="BOTH"
 
 
+[[dependencies.vpbanimated]]
+    modId="playeranimator"
+    mandatory=false
+    versionRange="[0,)"
+    ordering="NONE"
+    side="BOTH"
 
 
 # Start of user code block dependencies configuration
