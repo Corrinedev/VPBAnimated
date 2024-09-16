@@ -51,53 +51,109 @@ public class SprintPistolProcedure {
 			return;
 		for (String stringiterator : ItemListConfiguration.PISTOLS.get()) {
 			if ((ForgeRegistries.ITEMS.getKey((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem()).toString()).equals(stringiterator)) {
-				if (entity.isSprinting()) {
-					if ((entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new VpbanimatedModVariables.PlayerVariables())).PistolSprint == false) {
-						if (world.isClientSide()) {
-							if (entity instanceof AbstractClientPlayer player) {
-								var animation = (ModifierLayer<IAnimation>) PlayerAnimationAccess.getPlayerAssociatedData(player).get(new ResourceLocation("vpbanimated", "player_animation"));
-								if (animation != null) {
-									animation.setAnimation(new KeyframeAnimationPlayer(PlayerAnimationRegistry.getAnimation(new ResourceLocation("vpbanimated", "pistolsprint"))));
-								}
-							}
-						}
-						if (!world.isClientSide()) {
-							if (entity instanceof Player && world instanceof ServerLevel srvLvl_) {
-								List<Connection> connections = srvLvl_.getServer().getConnection().getConnections();
-								synchronized (connections) {
-									Iterator<Connection> iterator = connections.iterator();
-									while (iterator.hasNext()) {
-										Connection connection = iterator.next();
-										if (!connection.isConnecting() && connection.isConnected())
-											VpbanimatedMod.PACKET_HANDLER.sendTo(new SetupAnimationsProcedure.VpbanimatedModAnimationMessage(Component.literal("pistolsprint"), entity.getId(), true), connection, NetworkDirection.PLAY_TO_CLIENT);
+				if (entity.getDeltaMovement().horizontalDistanceSqr() > 1.0E-6D) {
+					if (entity.isSprinting()) {
+						if ((entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new VpbanimatedModVariables.PlayerVariables())).PistolSprint == false) {
+							if (world.isClientSide()) {
+								if (entity instanceof AbstractClientPlayer player) {
+									var animation = (ModifierLayer<IAnimation>) PlayerAnimationAccess.getPlayerAssociatedData(player).get(new ResourceLocation("vpbanimated", "player_animation"));
+									if (animation != null) {
+										animation.setAnimation(new KeyframeAnimationPlayer(PlayerAnimationRegistry.getAnimation(new ResourceLocation("vpbanimated", "pistolsprint"))));
 									}
 								}
 							}
-						}
-						{
-							boolean _setval = true;
-							entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-								capability.PistolSprint = _setval;
-								capability.syncPlayerVariables(entity);
-							});
-						}
-						VpbanimatedMod.queueServerWork(10, () -> {
+							if (!world.isClientSide()) {
+								if (entity instanceof Player && world instanceof ServerLevel srvLvl_) {
+									List<Connection> connections = srvLvl_.getServer().getConnection().getConnections();
+									synchronized (connections) {
+										Iterator<Connection> iterator = connections.iterator();
+										while (iterator.hasNext()) {
+											Connection connection = iterator.next();
+											if (!connection.isConnecting() && connection.isConnected())
+												VpbanimatedMod.PACKET_HANDLER.sendTo(new SetupAnimationsProcedure.VpbanimatedModAnimationMessage(Component.literal("pistolsprint"), entity.getId(), true), connection, NetworkDirection.PLAY_TO_CLIENT);
+										}
+									}
+								}
+							}
 							{
-								boolean _setval = false;
+								boolean _setval = true;
 								entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 									capability.PistolSprint = _setval;
 									capability.syncPlayerVariables(entity);
 								});
 							}
-						});
+							VpbanimatedMod.queueServerWork(10, () -> {
+								{
+									boolean _setval = false;
+									entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+										capability.PistolSprint = _setval;
+										capability.syncPlayerVariables(entity);
+									});
+								}
+							});
+						}
+					} else {
+						if ((entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new VpbanimatedModVariables.PlayerVariables())).PistolWalk == false) {
+							if (world.isClientSide()) {
+								if (entity instanceof AbstractClientPlayer player) {
+									var animation = (ModifierLayer<IAnimation>) PlayerAnimationAccess.getPlayerAssociatedData(player).get(new ResourceLocation("vpbanimated", "player_animation"));
+									if (animation != null) {
+										animation.setAnimation(new KeyframeAnimationPlayer(PlayerAnimationRegistry.getAnimation(new ResourceLocation("vpbanimated", "pistolwalk"))));
+									}
+								}
+							}
+							if (!world.isClientSide()) {
+								if (entity instanceof Player && world instanceof ServerLevel srvLvl_) {
+									List<Connection> connections = srvLvl_.getServer().getConnection().getConnections();
+									synchronized (connections) {
+										Iterator<Connection> iterator = connections.iterator();
+										while (iterator.hasNext()) {
+											Connection connection = iterator.next();
+											if (!connection.isConnecting() && connection.isConnected())
+												VpbanimatedMod.PACKET_HANDLER.sendTo(new SetupAnimationsProcedure.VpbanimatedModAnimationMessage(Component.literal("pistolwalk"), entity.getId(), true), connection, NetworkDirection.PLAY_TO_CLIENT);
+										}
+									}
+								}
+							}
+							{
+								boolean _setval = true;
+								entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+									capability.PistolWalk = _setval;
+									capability.syncPlayerVariables(entity);
+								});
+							}
+							VpbanimatedMod.queueServerWork(10, () -> {
+								{
+									boolean _setval = false;
+									entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+										capability.PistolWalk = _setval;
+										capability.syncPlayerVariables(entity);
+									});
+								}
+							});
+						}
 					}
 				} else {
-					{
-						boolean _setval = false;
-						entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-							capability.PistolSprint = _setval;
-							capability.syncPlayerVariables(entity);
-						});
+					if (world.isClientSide()) {
+						if (entity instanceof AbstractClientPlayer player) {
+							var animation = (ModifierLayer<IAnimation>) PlayerAnimationAccess.getPlayerAssociatedData(player).get(new ResourceLocation("vpbanimated", "player_animation"));
+							if (animation != null) {
+								animation.setAnimation(new KeyframeAnimationPlayer(PlayerAnimationRegistry.getAnimation(new ResourceLocation("vpbanimated", "pistolidle"))));
+							}
+						}
+					}
+					if (!world.isClientSide()) {
+						if (entity instanceof Player && world instanceof ServerLevel srvLvl_) {
+							List<Connection> connections = srvLvl_.getServer().getConnection().getConnections();
+							synchronized (connections) {
+								Iterator<Connection> iterator = connections.iterator();
+								while (iterator.hasNext()) {
+									Connection connection = iterator.next();
+									if (!connection.isConnecting() && connection.isConnected())
+										VpbanimatedMod.PACKET_HANDLER.sendTo(new SetupAnimationsProcedure.VpbanimatedModAnimationMessage(Component.literal("pistolidle"), entity.getId(), true), connection, NetworkDirection.PLAY_TO_CLIENT);
+								}
+							}
+						}
 					}
 				}
 			}
