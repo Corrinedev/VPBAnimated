@@ -1,0 +1,35 @@
+{
+  "_fv": 66,
+  "_type": "config",
+  "definition": {
+    "pools": [
+      {
+        "category": "Guns",
+        "entries": [
+          {
+            "item": {
+              "value": ""
+            },
+            "silkTouchMode": 5,
+            "block": {
+              "value": ""
+            },
+            "logicField": 0,
+            "numberField": 0.0,
+            "textDefault": "",
+            "comment": "add the modid and gunid, so something like pointblank:example",
+            "vardisplay": "Pistols",
+            "varname": "pistols",
+            "enablecomment": true,
+            "stringlist": [
+              "pointblank:glock_17",
+              "minecraft:bow"
+            ]
+          }
+        ]
+      }
+    ],
+    "file": "vpbanimated-itemlist-config",
+    "configType": 0
+  }
+}

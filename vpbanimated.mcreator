@@ -1,8 +1,153 @@
 {
-  "mod_elements": [],
-  "variable_elements": [],
+  "mod_elements": [
+    {
+      "name": "SetupAnimations",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "setup_animations",
+      "metadata": {
+        "files": [
+          "src/main/java/com/corrinedev/vpbanimated/procedures/SetupAnimationsProcedure.java"
+        ],
+        "dependencies": []
+      }
+    },
+    {
+      "name": "SprintPistol",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "sprint_pistol",
+      "metadata": {
+        "files": [
+          "src/main/java/com/corrinedev/vpbanimated/procedures/SprintPistolProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ItemList",
+      "type": "config",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "item_list",
+      "metadata": {
+        "files": [
+          "src/main/java/com/corrinedev/vpbanimated/configuration/ItemListConfiguration.java"
+        ]
+      }
+    },
+    {
+      "name": "IdlePistol",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "idle_pistol",
+      "metadata": {
+        "files": [
+          "src/main/java/com/corrinedev/vpbanimated/procedures/IdlePistolProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "WalkPistol",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "walk_pistol",
+      "metadata": {
+        "files": [
+          "src/main/java/com/corrinedev/vpbanimated/procedures/WalkPistolProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AnimationReset",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "animation_reset",
+      "metadata": {
+        "files": [
+          "src/main/java/com/corrinedev/vpbanimated/procedures/AnimationResetProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    }
+  ],
+  "variable_elements": [
+    {
+      "name": "PistolSprint",
+      "type": "logic",
+      "scope": "player_lifetime",
+      "value": "false"
+    },
+    {
+      "name": "PistolIdle",
+      "type": "logic",
+      "scope": "player_lifetime",
+      "value": "false"
+    },
+    {
+      "name": "PistolAim",
+      "type": "logic",
+      "scope": "player_lifetime",
+      "value": "false"
+    },
+    {
+      "name": "PistolWalk",
+      "type": "logic",
+      "scope": "player_lifetime",
+      "value": "false"
+    }
+  ],
   "sound_elements": [],
-  "tag_elements": {},
+  "tag_elements": {
+    "ITEMS:mod:pistol": [
+      "TAG:pointblank:glock_17",
+      "TAG:minecraft:bow",
+      "Items.WOODEN_SWORD"
+    ]
+  },
   "tab_element_order": {},
   "language_map": {
     "en_us": {}
