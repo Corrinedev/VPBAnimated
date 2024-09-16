@@ -54,6 +54,13 @@ public class SprintPistolProcedure {
 				if (entity.getDeltaMovement().horizontalDistanceSqr() > 1.0E-6D) {
 					if (entity.isSprinting()) {
 						if ((entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new VpbanimatedModVariables.PlayerVariables())).PistolSprint == false) {
+							{
+								boolean _setval = true;
+								entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+									capability.PistolSprint = _setval;
+									capability.syncPlayerVariables(entity);
+								});
+							}
 							if (world.isClientSide()) {
 								if (entity instanceof AbstractClientPlayer player) {
 									var animation = (ModifierLayer<IAnimation>) PlayerAnimationAccess.getPlayerAssociatedData(player).get(new ResourceLocation("vpbanimated", "player_animation"));
@@ -75,13 +82,6 @@ public class SprintPistolProcedure {
 									}
 								}
 							}
-							{
-								boolean _setval = true;
-								entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-									capability.PistolSprint = _setval;
-									capability.syncPlayerVariables(entity);
-								});
-							}
 							VpbanimatedMod.queueServerWork(10, () -> {
 								{
 									boolean _setval = false;
@@ -94,6 +94,13 @@ public class SprintPistolProcedure {
 						}
 					} else {
 						if ((entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new VpbanimatedModVariables.PlayerVariables())).PistolWalk == false) {
+							{
+								boolean _setval = true;
+								entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+									capability.PistolWalk = _setval;
+									capability.syncPlayerVariables(entity);
+								});
+							}
 							if (world.isClientSide()) {
 								if (entity instanceof AbstractClientPlayer player) {
 									var animation = (ModifierLayer<IAnimation>) PlayerAnimationAccess.getPlayerAssociatedData(player).get(new ResourceLocation("vpbanimated", "player_animation"));
@@ -115,13 +122,6 @@ public class SprintPistolProcedure {
 									}
 								}
 							}
-							{
-								boolean _setval = true;
-								entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-									capability.PistolWalk = _setval;
-									capability.syncPlayerVariables(entity);
-								});
-							}
 							VpbanimatedMod.queueServerWork(10, () -> {
 								{
 									boolean _setval = false;
@@ -131,28 +131,6 @@ public class SprintPistolProcedure {
 									});
 								}
 							});
-						}
-					}
-				} else {
-					if (world.isClientSide()) {
-						if (entity instanceof AbstractClientPlayer player) {
-							var animation = (ModifierLayer<IAnimation>) PlayerAnimationAccess.getPlayerAssociatedData(player).get(new ResourceLocation("vpbanimated", "player_animation"));
-							if (animation != null) {
-								animation.setAnimation(new KeyframeAnimationPlayer(PlayerAnimationRegistry.getAnimation(new ResourceLocation("vpbanimated", "pistolidle"))));
-							}
-						}
-					}
-					if (!world.isClientSide()) {
-						if (entity instanceof Player && world instanceof ServerLevel srvLvl_) {
-							List<Connection> connections = srvLvl_.getServer().getConnection().getConnections();
-							synchronized (connections) {
-								Iterator<Connection> iterator = connections.iterator();
-								while (iterator.hasNext()) {
-									Connection connection = iterator.next();
-									if (!connection.isConnecting() && connection.isConnected())
-										VpbanimatedMod.PACKET_HANDLER.sendTo(new SetupAnimationsProcedure.VpbanimatedModAnimationMessage(Component.literal("pistolidle"), entity.getId(), true), connection, NetworkDirection.PLAY_TO_CLIENT);
-								}
-							}
 						}
 					}
 				}
