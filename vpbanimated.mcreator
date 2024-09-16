@@ -70,7 +70,16 @@
         "files": [
           "src/main/java/com/corrinedev/vpbanimated/procedures/WalkPistolProcedure.java"
         ],
-        "dependencies": []
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
       }
     },
     {
@@ -82,6 +91,41 @@
       "metadata": {
         "files": [
           "src/main/java/com/corrinedev/vpbanimated/procedures/AnimationResetProcedure.java"
+        ],
+        "dependencies": []
+      }
+    },
+    {
+      "name": "ResetSprint",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "reset_sprint",
+      "metadata": {
+        "files": [
+          "src/main/java/com/corrinedev/vpbanimated/procedures/ResetSprintProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ResetWalk",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "reset_walk",
+      "metadata": {
+        "files": [
+          "src/main/java/com/corrinedev/vpbanimated/procedures/ResetWalkProcedure.java"
         ],
         "dependencies": [
           {
@@ -120,6 +164,12 @@
       "type": "logic",
       "scope": "player_lifetime",
       "value": "false"
+    },
+    {
+      "name": "WalkCycleTimer",
+      "type": "number",
+      "scope": "player_lifetime",
+      "value": "0.0"
     }
   ],
   "sound_elements": [],

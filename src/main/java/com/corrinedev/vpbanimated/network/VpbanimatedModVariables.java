@@ -71,6 +71,7 @@ public class VpbanimatedModVariables {
 				clone.PistolIdle = original.PistolIdle;
 				clone.PistolAim = original.PistolAim;
 				clone.PistolWalk = original.PistolWalk;
+				clone.WalkCycleTimer = original.WalkCycleTimer;
 			}
 		}
 	}
@@ -110,6 +111,7 @@ public class VpbanimatedModVariables {
 		public boolean PistolIdle = false;
 		public boolean PistolAim = false;
 		public boolean PistolWalk = false;
+		public double WalkCycleTimer = 0.0;
 
 		public void syncPlayerVariables(Entity entity) {
 			if (entity instanceof ServerPlayer serverPlayer)
@@ -122,6 +124,7 @@ public class VpbanimatedModVariables {
 			nbt.putBoolean("PistolIdle", PistolIdle);
 			nbt.putBoolean("PistolAim", PistolAim);
 			nbt.putBoolean("PistolWalk", PistolWalk);
+			nbt.putDouble("WalkCycleTimer", WalkCycleTimer);
 			return nbt;
 		}
 
@@ -131,6 +134,7 @@ public class VpbanimatedModVariables {
 			PistolIdle = nbt.getBoolean("PistolIdle");
 			PistolAim = nbt.getBoolean("PistolAim");
 			PistolWalk = nbt.getBoolean("PistolWalk");
+			WalkCycleTimer = nbt.getDouble("WalkCycleTimer");
 		}
 	}
 
@@ -159,6 +163,7 @@ public class VpbanimatedModVariables {
 					variables.PistolIdle = message.data.PistolIdle;
 					variables.PistolAim = message.data.PistolAim;
 					variables.PistolWalk = message.data.PistolWalk;
+					variables.WalkCycleTimer = message.data.WalkCycleTimer;
 				}
 			});
 			context.setPacketHandled(true);
