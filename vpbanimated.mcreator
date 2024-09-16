@@ -57,16 +57,7 @@
         "files": [
           "src/main/java/com/corrinedev/vpbanimated/procedures/IdlePistolProcedure.java"
         ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
+        "dependencies": []
       }
     },
     {
