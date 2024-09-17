@@ -61,28 +61,6 @@
       }
     },
     {
-      "name": "WalkPistol",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "walk_pistol",
-      "metadata": {
-        "files": [
-          "src/main/java/com/corrinedev/vpbanimated/procedures/WalkPistolProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
-      }
-    },
-    {
       "name": "AnimationReset",
       "type": "procedure",
       "compiles": true,
@@ -126,6 +104,28 @@
       "metadata": {
         "files": [
           "src/main/java/com/corrinedev/vpbanimated/procedures/ResetWalkProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "WalkPistol",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "walk_pistol",
+      "metadata": {
+        "files": [
+          "src/main/java/com/corrinedev/vpbanimated/procedures/WalkPistolProcedure.java"
         ],
         "dependencies": [
           {

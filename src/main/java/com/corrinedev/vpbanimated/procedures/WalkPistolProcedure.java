@@ -52,7 +52,14 @@ public class WalkPistolProcedure {
 		for (String stringiterator : ItemListConfiguration.PISTOLS.get()) {
 			if ((ForgeRegistries.ITEMS.getKey((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem()).toString()).equals(stringiterator)) {
 				if (entity.getDeltaMovement().horizontalDistanceSqr() > 1.0E-6D && !entity.isSprinting()) {
-					if ((entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new VpbanimatedModVariables.PlayerVariables())).WalkCycleTimer == 0) {
+					if ((entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new VpbanimatedModVariables.PlayerVariables())).PistolSprint == false) {
+						{
+							boolean _setval = true;
+							entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+								capability.PistolSprint = _setval;
+								capability.syncPlayerVariables(entity);
+							});
+						}
 						if (world.isClientSide()) {
 							if (entity instanceof AbstractClientPlayer player) {
 								var animation = (ModifierLayer<IAnimation>) PlayerAnimationAccess.getPlayerAssociatedData(player).get(new ResourceLocation("vpbanimated", "player_animation"));
@@ -74,21 +81,15 @@ public class WalkPistolProcedure {
 								}
 							}
 						}
-						{
-							double _setval = 9;
-							entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-								capability.WalkCycleTimer = _setval;
-								capability.syncPlayerVariables(entity);
-							});
-						}
-					} else {
-						{
-							double _setval = (entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new VpbanimatedModVariables.PlayerVariables())).WalkCycleTimer - 1;
-							entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-								capability.WalkCycleTimer = _setval;
-								capability.syncPlayerVariables(entity);
-							});
-						}
+						VpbanimatedMod.queueServerWork(10, () -> {
+							{
+								boolean _setval = false;
+								entity.getCapability(VpbanimatedModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+									capability.PistolSprint = _setval;
+									capability.syncPlayerVariables(entity);
+								});
+							}
+						});
 					}
 				}
 			}
